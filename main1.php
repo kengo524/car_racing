@@ -4,7 +4,7 @@
     require_once 'nissan.php';
     require_once 'ferrari.php';
 
-  // cars.phpより各メーカーの性能を表示
+  // 各メーカーの性能を表示
     $honda = new Honda();
     $honda->printInformation();
 

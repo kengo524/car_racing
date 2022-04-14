@@ -16,16 +16,18 @@
 
         //リフトアップした場合
         function liftUp(){
-            echo "リフトアップ実行";
-            $this->height = $height+40;
-            $this->acceleration = $acceleration*0.8;
+                echo "※リフトアップ実行";
+                echo "<br />";
+                $this->height += 40;
+                $this->acceleration *= 0.8;
         }
 
         //リフトダウンした場合
         function liftDown(){
-            echo "リフトダウン実行";
-            $this->height = $height-40;
-            $this->acceleration = $acceleration/0.8;
+            echo "※リフトダウン実行";
+            echo "<br />";
+            $this->height -= 40;
+            $this->acceleration /= 0.8;
         }
 
     }
