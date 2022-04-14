@@ -1,8 +1,6 @@
 <?php
   // 各クラスを読み込む
-  require_once 'ferrari.php';
-  require_once 'lift_change.php';
-
+  require_once 'classes/ferrari.php';
 
   $ferrari = new Ferrari();
   echo "リフトアップ前の車高{$ferrari->height}mm";
@@ -22,10 +20,5 @@
   echo "<br />";
   echo "リフトダウン後の加速度{$ferrari->acceleration}(m/s^2)";
   echo "<br />";
-
-//   $ferrari->liftUp();
-//   if($ferrari->liftUp()){
-//     $ferrari->printInformation();
-//   }
 
 ?>
