@@ -3,8 +3,9 @@
   require_once 'cars.php';
 
   class Nissan extends Cars{  // cars.phpのクラスを継承
-    function __construct($prices=null,$members_capacity=5){
+    function __construct($prices=null,$members_capacity=2){
       $this->deceleration = 30;
+      $this->members = 1;
       if(!$prices){
           $prices = mt_rand(1000,1500);
       }
