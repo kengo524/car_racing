@@ -1,22 +1,35 @@
 <?php
     class Cars{
-        public $names;
-        public $members_capacity;
-        public $members;
-        public $prices;
-        public $acceleration;
-        public $deceleration;
-        public $velocity;
-        public $max_velocity;
-        public $height;
+        public string $names;
+        public int $prices;
+        public int $members_capacity;
+        public int $members;
+        public float $velocity;
+        public float $max_velocity;
+        public float $acceleration;
+        public float $deceleration;
+        public int $height;
 
-        /*データ入力*/ 
-        function initialize($names="",$prices,$members_capacity,$acceleration,$max_velocity){
-            $this->names = $names;
-            $this->prices = $prices;
-            $this->members_capacity = $members_capacity;
-            $this->acceleration = $acceleration;
-            $this->max_velocity = $max_velocity;
+        function __construct(
+        $names,
+        $prices,
+        $members_capacity,
+        $members,
+        $velocity,
+        $max_velocity,
+        $acceleration,
+        $deceleration,
+        $height
+        ){
+        $this->names = $names;
+        $this->prices = mt_rand(($prices-249), ($prices + 249));
+        $this->members_capacity = $members_capacity;
+        $this->members = $members;
+        $this->velocity = $velocity;
+        $this->max_velocity = $max_velocity;
+        $this->acceleration = $acceleration;
+        $this->deceleration = $deceleration;
+        $this->height = $height;
         }
 
         /*データ取得*/ 
@@ -29,6 +42,17 @@
         public function getVelocity(){
             return $this->velocity;
         }
+        public function getMembers(){
+            return $this->members;
+          }
+      
+        public function getMembersCapacity(){
+            return $this->members_capacity;
+          }
+      
+        public function getAcceleration(){
+            return $this->acceleration;
+          }
 
         /*アクセルを踏む関数 */
         function pushAccel($time_interval){
@@ -48,8 +72,13 @@
                 echo "定員です。";
                 return;
             }
-            $this->acceleration *= (1 - $this->members*0.05);
-            $this->members += 1;
+            $this->members += $members;
+            for ($i = 0; $i<$members; $i++){
+                $this->acceleration = $this->acceleration*(0.95);
+              }
+              echo "追加で" . $members . "人乗車しました。";
+              echo "<br />";
+              echo "現在の加速度：{$this->acceleration}(m/s^2)";
         }
 
         /*降車*/
