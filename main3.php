@@ -4,33 +4,16 @@
     require_once 'classes/nissan.php';
     require_once 'classes/ferrari.php';
     
-    $created_cars = [];
-    global $honda_num;
-    function randomCreateHonda(){
-        $res_list = [];
-        $honda_num = mt_rand(1,10);
-        for($i = 0; $i < $honda_num; $i++){
-            $res_list[] = new Honda();
+    function randomCreate(){
+        $num = mt_rand(1,100);
+        for($i = 0; $i < $num; $i++){
+            $honda_list[] = new Honda();
+            $nissan_list[] = new Nissan();
+            $ferrari_list[] = new Ferrari();
         }
-        return $res_list;
-    }
-
-    function randomCreateNissan(){
-        $res_list = [];
-        $nissan_num = mt_rand(1,10);
-        for($i = 0; $i < $nissan_num; $i++){
-            $res_list[] = new Nissan();
-        }
-        return $res_list;
-    }
-
-    function randomCreateFerrari(){
-        $res_list = [];
-        $ferrari_num = mt_rand(1,10);
-        for($i = 0; $i < $ferrari_num; $i++){
-            $res_list[] = new Ferrari();
-        }
-        return $res_list;
+        return $honda_list;
+        return $nissan_list;
+        return $ferrari_list;
     }
 
     // 値段取得関数
@@ -49,12 +32,13 @@
         echo "合計金額：{$sum_price}万円";
         echo "<br />"; 
         echo "平均金額：{$ave_price}万円";
-        echo "<br />";    
+        echo "<br />";  
+        echo "(参考：製造合計台数は{$sum_cars}台）";  
     }
 
-    $honda_list = randomCreateHonda();
-    $nissan_list = randomCreateNissan();
-    $ferrari_list = randomCreateFerrari();
+    $honda_list = randomCreate();
+    $nissan_list = randomCreate();
+    $ferrari_list = randomCreate();
 
     $created_cars = array_merge($honda_list,$nissan_list,$ferrari_list);
 
