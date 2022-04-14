@@ -1,11 +1,16 @@
 <?php
   // 各クラスを読み込む
-    require 'honda.php';
-    require 'nissan.php';
-    require 'ferrari.php';
+    require_once 'honda.php';
+    require_once 'nissan.php';
+    require_once 'ferrari.php';
 
   // cars.phpより各メーカーの性能を表示
+    $honda = new Honda();
     $honda->printInformation();
+
+    $nissan = new Nissan();
     $nissan->printInformation();
+
+    $ferrari = new Ferrari();
     $ferrari->printInformation();
 ?>

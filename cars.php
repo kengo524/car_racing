@@ -1,15 +1,14 @@
 <?php
-    class Cars{/*クラスを定義する。*/
-
-        public $names = "";
-        public $members_capacity = "";
-        public $members = "";
-        public $prices = "";
-        public $acceleration = "";
-        public $deceleration = "";
-        public $velocity = "";
-        public $max_velocity = "";
-        public $height = "";
+    class Cars{
+        public $names;
+        public $members_capacity;
+        public $members;
+        public $prices;
+        public $acceleration;
+        public $deceleration;
+        public $velocity;
+        public $max_velocity;
+        public $height;
 
         /*初期化 */
         // function __construct($names, $members_capacity, $members, $prices, $acceleration, $deceleration, $velocity, $max_velocity, $height){
@@ -54,17 +53,17 @@
         function printInformation(){
             echo "メーカー：{$this->names}";
             echo "<br />";
-            echo "定員：{$this->$members_capacity}名";
+            echo "定員：{$this->members_capacity}名";
             echo "<br />"; 
-            echo "価格：{$this->$prices}万円";
+            echo "価格：{$this->prices}万円";
             echo "<br />"; 
-            echo "加速度：{$this->$acceleration}(m/s^2)";
+            echo "加速度：{$this->acceleration}(m/s^2)";
             echo "<br />"; 
-            echo "減速度：{$this->$decceleration}(m/s^2)";
+            echo "減速度：{$this->deceleration}(m/s^2)";
             echo "<br />"; 
-            echo "速度：{$this->$max_valocity}";
+            echo "最高速度：{$this->max_velocity}km/h";
             echo "<br />";
-            echo "車高：{$this->$height}cm";
+            echo "車高：{$this->height}mm";
             echo "<br />";
         }
     }
