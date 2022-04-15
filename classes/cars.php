@@ -1,5 +1,5 @@
 <?php
-    class Cars{
+    abstract class Cars{
         public string $names;
         public int $prices;
         public int $members_capacity;
@@ -56,39 +56,57 @@
 
         /*アクセルを踏む関数 */
         function pushAccel($time_interval){
-            $this->velocity += $time_interval*$this->acceleration;  
+            $this->velocity += $time_interval*$this->acceleration; 
+            if($this->velocity > $this->max_velocity){
+                $this->velocity = $this->max_velocity;
+            } 
             return($this->velocity);
         }
 
         /*ブレーキを踏む関数 */
         function pushBreak($time_interval){
             $this->velocity += $time_interval*$this->deceleration;
+            if($this->velocity < 0){
+                $this->velocity = 0;
+            }
             return($this->velocity);
         }
 
         /*乗車*/
-        function getOn(){
-            if($this->member_capacity == $this->members){
-                echo "定員です。";
+        function getOn($add_members){
+            $this->members += $add_members;
+            if($this->members_capacity < $this->members){
+                $this->members = $this->members_capacity;
+                echo "定員です。これ以上乗れません。";
+                echo "<br />";
                 return;
+            }else{
+                for ($i = 0; $i<$add_members; $i++){
+                    $this->acceleration = $this->acceleration*0.95;
+                }
+                echo "追加で{$add_members}人乗車しました。(現在{$this->members}人乗車中。）";
+                echo "<br />";
+                echo "現在の加速度：{$this->acceleration}(m/s^2)";
+                echo "<br />";
             }
-            $this->members += $members;
-            for ($i = 0; $i<$members; $i++){
-                $this->acceleration = $this->acceleration*(0.95);
-              }
-              echo "追加で" . $members . "人乗車しました。";
-              echo "<br />";
-              echo "現在の加速度：{$this->acceleration}(m/s^2)";
         }
 
         /*降車*/
-        function getOff(){
+        function getOff($decrease_members){
+            $this->members -= $decrease_members;
             if($this->members < 1){
                 echo "誰か乗ってください。";
+                echo "<br />";
                 return;
+            }else{
+                for ($i = 0; $i<$decrease_members; $i++){
+                    $this->acceleration = $this->acceleration/0.95;
+                }
+                echo "途中で{$decrease_members}人下車しました。(現在{$this->members}人乗車中。）";
+                echo "<br />";
+                echo "現在の加速度：{$this->acceleration}(m/s^2)";
+                echo "<br />";
             }
-            $this->acceleration /= (1 - $this->members*0.05);
-            $this->members -= 1;
         }
 
         /*車の情報表示*/
@@ -105,6 +123,21 @@
             echo "<br />"; 
             echo "最高速度：{$this->max_velocity}km/h";
             echo "<br />";
+        }
+
+        //統計表示
+        static function printStatistics($objects){
+            // 合計金額
+            $sum_price = array_sum(array_column($objects,'prices'));
+            // 合計台数
+            $sum_cars = count($objects);
+            // 平均金額
+            $ave_price = round($sum_price / $sum_cars);
+             
+            echo "合計金額：{$sum_price}万円";
+            echo "<br />"; 
+            echo "平均金額：{$ave_price}万円";
+            echo "<br />";      
         }
     }
 ?>
