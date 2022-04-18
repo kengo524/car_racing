@@ -15,7 +15,5 @@
     $nissan->getOn(1);
     $nissan->getOn(1);
     $nissan->getOff(2);
-    $nissan->getOff(1);
     $nissan->getOn(2);
-
 ?>

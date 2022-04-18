@@ -93,13 +93,14 @@
 
         /*降車*/
         function getOff($decrease_members){
-            if($this->members - $decrease_members < 1){
+            if($this->members-$decrease_members < 1){
                 echo "誰か乗ってください。";
                 echo "<br />";
                 return;
             }else{
                 for ($i = 0; $i<$decrease_members; $i++){
                     $this->acceleration = $this->acceleration/0.95;
+                    $this->members -= 1;
                 }
                 echo "途中で{$decrease_members}人下車しました。(現在{$this->members}人乗車中。）";
                 echo "<br />";
