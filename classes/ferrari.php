@@ -28,19 +28,34 @@
           }
 
         //リフトアップした場合
-        function liftUp(){
+        function liftUp($up_count){
             echo "※リフトアップ実行";
             echo "<br />";
-            $this->height += 40;
-            $this->acceleration *= 0.8;
+            if($up_count<5){
+              for($i = 0; $i<$up_count; $i++){
+                $this->height += 40;
+                $this->acceleration *= 0.8;
+              }
+            }elseif($up_count>=5){
+              echo "これ以上リフトアップできません";
+            }elseif($up_count<1){
+              echo "正しい値を入力ください";
+            }
+            
         }
 
         //リフトダウンした場合
-        function liftDown(){
-        echo "※リフトダウン実行";
-        echo "<br />";
-        $this->height -= 40;
-        $this->acceleration /= 0.8;
+        function liftDown($down_count){
+          echo "※リフトダウン実行";
+          echo "<br />";
+          if($down_count<5){
+          $this->height -= 40;
+          $this->acceleration /= 0.8;
+          }elseif ($down_count>=5) {
+            echo "これ以上リフトダウンできません";
+          }elseif($up_count<1){
+            echo "正しい値を入力ください";
+          }
         }
     }
 ?>
