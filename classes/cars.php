@@ -22,7 +22,7 @@
         $height
         ){
         $this->names = $names;
-        $this->prices = mt_rand(($prices-249), ($prices + 249));
+        $this->prices = $prices;
         $this->members_capacity = $members_capacity;
         $this->members = $members;
         $this->velocity = $velocity;

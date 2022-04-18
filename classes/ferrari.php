@@ -14,6 +14,7 @@
             $deceleration = 60,
             $height = 110,
           ){
+            $prices = mt_rand(($prices-249), ($prices + 249));
             parent::__construct(
               $names,
               $prices,

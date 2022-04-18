@@ -14,6 +14,7 @@
       $deceleration = 40,
       $height = 150,
     ){
+      $prices = mt_rand(($prices-249), ($prices + 249));  
       parent::__construct(
         $names,
         $prices,
@@ -26,12 +27,5 @@
         $height
       );
     }
-    
-
-    //ニッサンの欠陥発覚
-    // echo "欠陥発覚前の加速度{$acceleration}(m/s^2)";
-    // $acceleration *= 0.6;
-    // echo "<br />";
-    // echo "発覚後の加速度{$this->acceleration}(m/s^2)(60%減)";
   }
 ?>
