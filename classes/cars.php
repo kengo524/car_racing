@@ -93,8 +93,7 @@
 
         /*降車*/
         function getOff($decrease_members){
-            $this->members -= $decrease_members;
-            if($this->members < 1){
+            if($this->members - $decrease_members < 1){
                 echo "誰か乗ってください。";
                 echo "<br />";
                 return;
