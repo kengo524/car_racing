@@ -47,7 +47,31 @@
             $toyota_distance =  round($toyota_distance + $toyota->pushAccel(0.1)*$time_interval+(($toyota->acceleration)*$time_interval^2)/2);
                 echo "トヨタ{$toyota_distance}m";  
                 echo "(速さ：{$toyota->velocity}km/h)";
-                echo "(加速度：{$toyota->acceleration}\n\n";         
+                echo "(加速度：{$toyota->acceleration}\n\n";   
+                // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+                if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
+                    sleep(1);
+                    echo "レース終了!!\n";
+                    echo "優勝は、、、\n";
+                $distance_lists = [
+                    "Honda" => $honda_distance,
+                    "Nissan" => $nissan_distance,
+                    "Ferrari"=> $ferrari_distance,
+                    "Toyota" => $toyota_distance
+                ];
+                $max_value = 0;
+                $max_key = "";
+                foreach ($distance_lists as $key => $value) {
+                    if ($value > $max_value) {
+                        $max_value = $value;
+                        $max_key = $key;
+                    }
+                }
+                sleep(1);
+                print_r($max_key);            
+                break;
+                //  for文の中に入れて、ゴールしたらレースの途中で強制終了。
+                }        
         }
         // カーブ突入！！1秒間でブレーキかける力は任意
         for($i=10.1; $i<12; $i=$i+0.1){
@@ -93,6 +117,31 @@
                 echo "【{$i}秒経過時点】\n";
                 echo"トヨタは停止した\n\n";
             }
+            // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+            if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
+                sleep(1);
+                echo "レース終了!!\n";
+                echo "優勝は、、、\n";
+            $distance_lists = [
+                "Honda" => $honda_distance,
+                "Nissan" => $nissan_distance,
+                "Ferrari"=> $ferrari_distance,
+                "Toyota" => $toyota_distance
+            ];
+            $max_value = 0;
+            $max_key = "";
+            foreach ($distance_lists as $key => $value) {
+                if ($value > $max_value) {
+                    $max_value = $value;
+                    $max_key = $key;
+                }
+            }
+            sleep(1);
+            print_r($max_key);            
+            break;
+            //  for文の中に入れて、ゴールしたらレースの途中で強制終了。
+            } 
+
         }
         // カーブ曲がり中（＝減速後の速さで走行。距離＝速さ×時間）
         for($i=12; $i<22; $i=$i+0.1){
@@ -123,31 +172,31 @@
             //         echo "4位:\n";
             //         echo "\n";
             //     }
-            //     // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
-                if($honda_distance >1000 || $nissan_distance >1000 || $ferrari_distance >1000 || $toyota_distance >1000){
-                    // sleep(1);
-                    echo "レース終了!!\n";
-                    echo "優勝は、、、\n";
-                 $distance_lists = array(
-                     [$honda_distance, "Honda"],
-                     [$nissan_distance, "Nissan"],
-                     [$ferrari_distance,"Ferrari"],
-                     [$toyota_distance, "Toyota"]
-                 );
-                 $max = 0;
-                 foreach($distance_lists as $distance_list){
-                    //$num = intval($distance_lists[0]);
-                    // if($num > $max){
-                    //     $max = $num;
-                        $max_name = array_keys($distance_lists, max($distance_lists[0]));
-                    //}
-                    print_r($max_name);
-                 }
-
                 
-                 break;
-                //  for文の中に入れて、ゴールしたらレースの途中で強制終了。
-                }      
+            // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+            if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
+                sleep(1);
+                echo "レース終了!!\n";
+                echo "優勝は、、、\n";
+            $distance_lists = [
+                "Honda" => $honda_distance,
+                "Nissan" => $nissan_distance,
+                "Ferrari"=> $ferrari_distance,
+                "Toyota" => $toyota_distance
+            ];
+            $max_value = 0;
+            $max_key = "";
+            foreach ($distance_lists as $key => $value) {
+                if ($value > $max_value) {
+                    $max_value = $value;
+                    $max_key = $key;
+                }
+            }
+            sleep(1);
+            print_r($max_key);            
+            break;
+            //  for文の中に入れて、ゴールしたらレースの途中で強制終了。
+            } 
         }
     }
 ?>
