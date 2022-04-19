@@ -9,8 +9,8 @@
       $members_capacity = 3, 
       $members = 1,
       $velocity = 0,
-      $max_velocity = 140,
-      $acceleration = 30,
+      $max_velocity = 180,
+      $acceleration = 50,
       $deceleration = 40,
       $height = 150,
     ){

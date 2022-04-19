@@ -15,7 +15,7 @@
       $height = 120,
     ){
       $prices = mt_rand(($prices-500), ($prices + 500));
-      $acceleration = round($prices/45,2);/*価格に応じて加速度は変化する比例関係 */
+      $acceleration = round($prices/40,2);/*価格に応じて加速度は変化する比例関係 */
       parent::__construct(
         $names,
         $prices,

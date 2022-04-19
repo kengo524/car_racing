@@ -74,9 +74,9 @@
                 }        
         }
         // カーブ突入！！1秒間でブレーキかける力は任意
-        for($i=10.1; $i<12; $i=$i+0.1){
+        for($i=20.1; $i<22; $i=$i+0.1){
             // 減速度を任意に設定。（＝運転手の力量などによって変化するものと仮定。）
-            $honda->deceleration = mt_rand(30,40);
+            $honda->deceleration = mt_rand(20,40);
             if($honda->velocity > 0){
                 $honda_distance =  round($honda_distance + $honda->pushBreak(0.1)*$time_interval+(-($honda->deceleration)*$time_interval^2)/2);
                 echo "【{$i}秒経過時点】\n";
@@ -144,7 +144,7 @@
 
         }
         // カーブ曲がり中（＝減速後の速さで走行。距離＝速さ×時間）
-        for($i=12; $i<22; $i=$i+0.1){
+        for($i=22; $i<32; $i=$i+0.1){
             $honda_distance = round($honda_distance + $honda->pushAccel(0.1)*$time_interval);
                 echo "【{$i}秒経過時点】\n";
                 echo "ホンダ：{$honda_distance}m";
