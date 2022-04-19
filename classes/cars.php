@@ -56,20 +56,30 @@
 
         /*アクセルを踏む関数 */
         function pushAccel($time_interval){
-            $this->velocity += $time_interval*$this->acceleration; 
-            if($this->velocity > $this->max_velocity){
-                $this->velocity = $this->max_velocity;
+            $this->velocity_mps = round(($this->velocity)*1000/3600,2);//時速→秒速に変換
+            $this->velocity_mps = $this->velocity_mps+$time_interval*$this->acceleration;//速度（秒速）＋加速度（m/s^2）=現在速度（秒速） 
+            if($this->velocity_mps > ($this->max_velocity)*1000/3600){//秒速ベースで最高速度を超えた場合
+                $this->velocity_mps = ($this->max_velocity)*1000/3600;//最高速度（秒速ベース）とする。
+                return($this->velocity_mps);
             } 
+            $this->velocity = round($this->velocity_mps)*3600/1000;
+            return($this->velocity_mps);
             return($this->velocity);
         }
 
         /*ブレーキを踏む関数 */
         function pushBreak($time_interval){
-            $this->velocity += $time_interval*$this->deceleration;
-            if($this->velocity < 0){
-                $this->velocity = 0;
+            $this->velocity_mps = round(($this->velocity)*1000/3600,2);//時速→秒速に変換
+            $this->velocity_mps = $this->velocity_mps-$time_interval*$this->deceleration;//速度（秒速）-加速度（m/s^2）=現在速度（秒速）
+            if(($this->velocity_mps)*3600/1000 - $this->deceleration < 0){
+                $this->velocity_mps = 8.3;
+                return($this->velocity_mps);
+                return($this->velocity);
+            }else{
+                $this->velocity = round($this->velocity_mps)*3600/1000;
+                return($this->velocity); 
             }
-            return($this->velocity);
+
         }
 
         /*乗車*/
@@ -111,18 +121,12 @@
 
         /*車の情報表示*/
         function printInformation(){
-            echo "車種：{$this->names}";
-            echo "<br />";
-            echo "価格：{$this->prices}万円";
-            echo "<br />"; 
-            echo "定員：{$this->members_capacity}名";
-            echo "<br />"; 
-            echo "加速度：{$this->acceleration}(m/s^2)";
-            echo "<br />"; 
-            echo "減速度：{$this->deceleration}(m/s^2)";
-            echo "<br />"; 
-            echo "最高速度：{$this->max_velocity}km/h";
-            echo "<br />";
+            echo "車種：{$this->names}\n";
+            echo "価格：{$this->prices}万円\n"; 
+            echo "定員：{$this->members_capacity}名\n"; 
+            echo "加速度：{$this->acceleration}(m/s^2)\n"; 
+            echo "減速度：{$this->deceleration}(m/s^2)\n"; 
+            echo "最高速度：{$this->max_velocity}km/h\n";
         }
 
         //統計表示
