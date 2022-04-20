@@ -1,10 +1,10 @@
 <?php
 
     // require_once "course_layout.php";
-    require_once "../classes/honda.php";
-    require_once "../classes/nissan.php";
-    require_once "../classes/toyota.php";
-    require_once "../classes/ferrari.php";
+    require_once "classes/honda.php";
+    require_once "classes/nissan.php";
+    require_once "classes/toyota.php";
+    require_once "classes/ferrari.php";
 
     // コース設置
 
@@ -20,18 +20,13 @@
     $ferrari_distance = 0;
     $nissan_distance = 0;
     $toyota_distance = 0;
-    // 各車に走行距離という要素を追加
-        // $honda = [$honda_distance = 0];
-        // $nissan = [$nissan_distance = 0];
-        // $ferrari = [$ferrari_distance = 0];
-        // $toyota = [$toyota_distance = 0];
 
     //直進→カーブ直前のブレーキ→カーブを繰り返す
     for($j=0; $j<1; $j++){
         // 直進走行
-        for($i=0.1; $i<20; $i=$i+0.1){
+        for($i=0.1; $i<20; $i=$i+0.1){//$i<20→ここを距離$honda_distance < 2000mみたいにできないか。。。
             // 0.1秒ごとにアクセル踏んでに進んだ距離
-            $honda_distance =  round($honda_distance + $honda->pushAccel(0.1)*$time_interval+(($honda->acceleration)*$time_interval^2)/2);
+            $honda_distance = round($honda_distance + $honda->pushAccel(0.1)*$time_interval+(($honda->acceleration)*$time_interval^2)/2);
                 echo "【{$i}秒経過時点】\n";
                 echo "ホンダ：{$honda_distance}m";
                 echo "(速さ：{$honda->velocity}km/h)";
@@ -48,7 +43,7 @@
                 echo "トヨタ{$toyota_distance}m";  
                 echo "(速さ：{$toyota->velocity}km/h)";
                 echo "(加速度：{$toyota->acceleration}\n\n";   
-                // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+                // 結果発表（ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
                 if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
                     sleep(1);
                     echo "レース終了!!\n";
@@ -65,7 +60,7 @@
                     if ($value > $max_value) {
                         $max_value = $value;
                         $max_key = $key;
-                    }
+                    }//minも求めて4位まで出す？
                 }
                 sleep(1);
                 print_r($max_key);            
@@ -117,7 +112,7 @@
                 echo "【{$i}秒経過時点】\n";
                 echo"トヨタは停止した\n\n";
             }
-            // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+            // 結果発表（ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
             if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
                 sleep(1);
                 echo "レース終了!!\n";
@@ -162,18 +157,8 @@
                 echo "トヨタ{$toyota_distance}m";  
                 echo "(速さ：{$toyota->velocity}km/h)";
                 echo "(加速度：{$toyota->acceleration}\n\n";   
-                //途中経過（いずれかの車が500m突破したら表示。）これだと４台突破ごとに表示されるので、突破した車のみ表示したい。
-            //     if($honda_distance >500 || $nissan_distance >500 || $ferrari_distance >500 || $toyota_distance >500){
-            //         // sleep(1);
-            //         echo "500m通過地点途中経過\n";
-            //         echo "1位:\n";
-            //         echo "2位:\n";
-            //         echo "3位:\n";
-            //         echo "4位:\n";
-            //         echo "\n";
-            //     }
                 
-            // 結果発表（上記同様、ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
+            // 結果発表（ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
             if($honda_distance >2000 || $nissan_distance >2000 || $ferrari_distance >2000 || $toyota_distance >2000){
                 sleep(1);
                 echo "レース終了!!\n";
