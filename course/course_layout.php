@@ -38,7 +38,4 @@ class CourseLayout{
     }
 }
 
-// $course_layout = new CourseLayout();
-// print_r($course_layout);
-
 ?>

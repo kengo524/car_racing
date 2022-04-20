@@ -54,32 +54,35 @@
             return $this->acceleration;
           }
 
+        public function getDeceleration(){
+        return $this->deceleration;
+        }
+        
+        public function getVelocity_Mps(){
+            return round(($this->velocity)*1000/3600,2);//時速→秒速に変換
+        }  
+
         /*アクセルを踏む関数 */
         function pushAccel($time_interval){
-            $this->velocity_mps = round(($this->velocity)*1000/3600,2);//時速→秒速に変換
-            $this->velocity_mps = $this->velocity_mps+$time_interval*$this->acceleration;//速度（秒速）＋加速度（m/s^2）=現在速度（秒速） 
-            if($this->velocity_mps > ($this->max_velocity)*1000/3600){//秒速ベースで最高速度を超えた場合
-                $this->velocity_mps = ($this->max_velocity)*1000/3600;//最高速度（秒速ベース）とする。
-                return($this->velocity_mps);
+            $this->velocity += $time_interval*$this->getAcceleration();
+            // $this->velocity_mps = $this->kmphToMps();//時速→秒速に変換
+            // $this->velocity_mps = $this->velocity_mps+$time_interval*$this->getAcceleration();//速度（秒速）＋加速度（m/s^2）=現在速度（秒速） 
+            if($this->velocity > $this->max_velocity){//秒速ベースで最高速度を超えた場合
+               $this->velocity = $this->max_velocity;//最高速度（秒速ベース）とする。
             } 
-            $this->velocity = round($this->velocity_mps)*3600/1000;
-            return($this->velocity_mps);
-            return($this->velocity);
+            // $this->velocity = round($this->velocity_mps)*3600/1000;
+            // return($this->velocity_mps);
+            // return($this->velocity);
         }
 
         /*ブレーキを踏む関数 */
         function pushBreak($time_interval){
-            $this->velocity_mps = round(($this->velocity)*1000/3600,2);//時速→秒速に変換
-            $this->velocity_mps = $this->velocity_mps-$time_interval*$this->deceleration;//速度（秒速）-加速度（m/s^2）=現在速度（秒速）
-            if(($this->velocity_mps)*3600/1000 - $this->deceleration < 0){
-                $this->velocity_mps = 8.3;
-                return($this->velocity_mps);
-                return($this->velocity);
-            }else{
-                $this->velocity = round($this->velocity_mps)*3600/1000;
-                return($this->velocity); 
+            $this->velocity -= $time_interval*$this->getDeceleration();
+            // $this->velocity_mps = round(($this->velocity)*1000/3600,2);//時速→秒速に変換
+            // $this->velocity_mps = $this->velocity_mps-$time_interval*$this->deceleration;//速度（秒速）-加速度（m/s^2）=現在速度（秒速）
+            if($this->getVelocity_Mps() < 0){
+                $this->velocity = 1;
             }
-
         }
 
         /*乗車*/
