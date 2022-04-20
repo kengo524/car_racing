@@ -9,7 +9,7 @@
             $members_capacity = 5, 
             $members = 1,
             $velocity = 0,
-            $max_velocity = 198,//加速度を0.1秒ごとに掛けていったときの数値に調整。180->198
+            $max_velocity = 190,//加速度を0.1秒ごとに掛けていったときの数値に調整。180->198
             $acceleration = 45,
             $deceleration = 50,
             $height = 120,

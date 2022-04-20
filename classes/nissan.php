@@ -10,7 +10,7 @@
       $members = 1,
       $velocity = 0,
       $max_velocity = 180,
-      $acceleration = 50,
+      $acceleration = 45,
       $deceleration = 40,
       $height = 150,
     ){

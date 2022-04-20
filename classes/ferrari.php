@@ -11,7 +11,7 @@
             $velocity = 0,
             $max_velocity = 200,
             $acceleration = 50,
-            $deceleration = 60,
+            $deceleration = 70,
             $height = 110,
           ){
             $prices = mt_rand(($prices-249), ($prices + 249));
