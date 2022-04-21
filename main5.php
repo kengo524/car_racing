@@ -17,6 +17,7 @@
     $ferrari_distance = 0;
     $nissan_distance = 0;
     $toyota_distance = 0;
+    $goal_distance = 10000;
 
     //関数まとめる。
     function printRacingData($car, &$distance, $time_interval){
@@ -24,37 +25,37 @@
                     echo "{$car->names}:{$distance}m";
                     echo "(速さ：{$car->velocity}km/h)";
                     echo "(加速度：{$car->acceleration}\n";
-                    // usleep(100000);
+                    // usleep(50000);
     }
     
     // 連想配列
     $car_lists = [
-        ["車"=> $honda ,"距離" => $honda_distance],
-        ["車"=> $ferrari ,"距離" => $ferrari_distance],
-        ["車"=> $nissan ,"距離" => $nissan_distance],
-        ["車"=> $toyota ,"距離" => $toyota_distance],];
+        ["car"=> $honda ,"distance" => $honda_distance],//英語修正
+        ["car"=> $ferrari ,"distance" => $ferrari_distance],
+        ["car"=> $nissan ,"distance" => $nissan_distance],
+        ["car"=> $toyota ,"distance" => $toyota_distance],];
     // print_r($car_lists);
 
     echo "レーススタート!!"; 
-    echo "ゴール距離(2000m)"; 
+    echo "ゴール距離({$goal_distance}m)"; 
     sleep(3);
     
     //秒数ごとに車を表示
-    for($i=0.1; $i<100; $i=$i+0.1){
+    for($i=0.1; $i<10000; $i=$i+0.1){
         echo "【{$i}秒経過時点】\n";
         foreach($car_lists as &$car_data){
             // print($car_data["車"]->getNames());
             $p = mt_rand(1,100);/*乱数発生させ、確率でブレーキ、アクセル選定 */
             if($p<65){
-                $car_data["車"]->pushAccel($time_interval);
+                $car_data["car"]->pushAccel($time_interval);
             }else if($p<90){
-                $car_data["車"]->pushBreak($time_interval);
+                $car_data["car"]->pushBreak($time_interval);
                 echo "ブレーキ踏んだ！";
             }         
-            printRacingData($car_data["車"], $car_data["距離"], $time_interval);
+            printRacingData($car_data["car"], $car_data["distance"], $time_interval);
             echo "\n";
             // 結果発表（ゴール距離を設定し、それをいずれかの車が突破した時点でループ脱却。そこで突破した車を表示したい。
-            if($car_data["距離"] >2000){
+            if($car_data["distance"] > $goal_distance){
                 sleep(1);
                 echo "レース終了!!\n";
             // $distance_lists = [];
@@ -62,10 +63,10 @@
             //     $distance_lists[] = [$car_data["車"]-> => $car_data["距離"]];
             // }
             $distance_lists = [
-                $car_lists[0]["車"]->getNames() => $car_lists[0]["距離"],
-                $car_lists[1]["車"]->getNames() => $car_lists[1]["距離"],
-                $car_lists[2]["車"]->getNames() => $car_lists[2]["距離"],
-                $car_lists[3]["車"]->getNames() => $car_lists[3]["距離"],
+                $car_lists[0]["car"]->getNames() => $car_lists[0]["distance"],
+                $car_lists[1]["car"]->getNames() => $car_lists[1]["distance"],
+                $car_lists[2]["car"]->getNames() => $car_lists[2]["distance"],
+                $car_lists[3]["car"]->getNames() => $car_lists[3]["distance"],
             ];
             $rank = 1;
             arsort($distance_lists);
