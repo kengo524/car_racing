@@ -15,7 +15,7 @@
       $height = 150,
     ){
       $prices = mt_rand(($prices-249), ($prices + 249));  
-      parent::__construct(
+      parent::__construct( 
         $names,
         $prices,
         $members_capacity,
